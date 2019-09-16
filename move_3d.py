@@ -2,6 +2,8 @@
 START = 1
 END_X = int(input("Where to end the board, x-axis? "))
 END_Y = int(input("How high do you want the grid? "))
+y_history = []
+x_history = []
 
 def position_x(movement, x_pos):
     '''Calculate the numeric value of the desired position'''
@@ -27,16 +29,14 @@ def move_num(pos_current_x, pos_current_y):
         if(i == pos_current_y):
             for j in range(START, END_X+1):
                 if(j == pos_current_x):
-                    print('o', end =' ')
+                    print('o', end ='  ')
                 else:
-                    print('x', end = ' ')
+                    print('x', end = '  ')
             print()
             continue
         for k in range (START, END_X+1):
-            print('x', end = ' ')
-        print()
-                     
-
+            print('x', end = '  ')
+        print()      
 
 #Main program
 
@@ -61,15 +61,16 @@ move_num(x_pos, y_pos)
 #Save the position
 pos_current_x = x_pos
 pos_current_y = y_pos
+
 movement = input("Input your move: ")
 
 while(movement == 'a' or movement == 'd' or movement == 'w' or movement == 's'):
     #Get the numeric value and save it
     if(movement == 'w' or movement == 's'):
         pos_current_y = position_y(movement, pos_current_y)
+
     elif(movement == 'a' or movement == 'd'):
         pos_current_x = position_x(movement, pos_current_x)
-    
 
     move_num(pos_current_x, pos_current_y)
     movement = input("Input your choice: ")
