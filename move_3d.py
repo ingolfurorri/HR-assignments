@@ -26,12 +26,20 @@ def diagonal(movement, x_pos, y_pos):
         y_pos -= 1
         if(x_pos != START):
             x_pos -= 1
+        return x_pos, y_pos
+
     if(movement == 'e' and y_pos != START):
         y_pos -= 1
         if(x_pos != END_X):
             x_pos += 1
-    return x_pos, y_pos
+        return x_pos, y_pos
 
+    elif(y_pos == START):
+        if(movement == 'e' and x_pos != END_X):
+            x_pos += 1
+        elif(movement == 'q' and x_pos != START):
+            x_pos -=1
+        return x_pos, y_pos
 
 def move_num(pos_current_x, pos_current_y):
     '''Take in the numeric value of the desired movement, and update the grid'''
