@@ -2,8 +2,6 @@
 START = 1
 END_X = int(input("Where to end the board, x-axis? "))
 END_Y = int(input("How high do you want the grid? "))
-y_history = []
-x_history = []
 
 def position_x(movement, x_pos):
     '''Calculate the numeric value of the desired position'''
@@ -22,6 +20,18 @@ def position_y(movement, y_pos):
         return y_pos - 1
     else:
         return y_pos
+
+def diagonal(movement, x_pos, y_pos):
+    if(movement == 'q' and y_pos != START):
+        y_pos -= 1
+        if(x_pos != START):
+            x_pos -= 1
+    if(movement == 'e' and y_pos != START):
+        y_pos -= 1
+        if(x_pos != END_X):
+            x_pos += 1
+    return x_pos, y_pos
+
 
 def move_num(pos_current_x, pos_current_y):
     '''Take in the numeric value of the desired movement, and update the grid'''
@@ -44,6 +54,8 @@ print("a - for moving left")
 print("d - for moving right")
 print("w - for moving up")
 print("s - for moving down")
+print("e - for moving right diagonal up")
+print("q - for moving left diagonal up")
 print("Any other letter for quitting")
 
 x_pos = int(input("Input your starting x-position: "))
@@ -64,13 +76,16 @@ pos_current_y = y_pos
 
 movement = input("Input your move: ")
 
-while(movement == 'a' or movement == 'd' or movement == 'w' or movement == 's'):
+while(movement == 'a' or movement == 'd' or movement == 'w' or movement == 's' or movement == 'e' or movement == 'q'):
     #Get the numeric value and save it
     if(movement == 'w' or movement == 's'):
         pos_current_y = position_y(movement, pos_current_y)
 
     elif(movement == 'a' or movement == 'd'):
         pos_current_x = position_x(movement, pos_current_x)
+    
+    elif(movement == 'q' or movement == 'e'):
+        pos_current_x, pos_current_y = diagonal(movement, pos_current_x, pos_current_y)
 
     move_num(pos_current_x, pos_current_y)
     movement = input("Input your choice: ")
