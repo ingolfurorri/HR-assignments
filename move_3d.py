@@ -1,7 +1,7 @@
 #We create the board, from START to END
 START = 1
-END_X = int(input("Where to end the board, x-axis? "))
-END_Y = int(input("How high do you want the grid? "))
+END_X = int(input("How long do you want the board? "))
+END_Y = int(input("How high do you want the board? "))
 
 def position_x(movement, x_pos):
     '''Calculate the numeric value of the desired position'''
@@ -58,12 +58,9 @@ def move_num(pos_current_x, pos_current_y):
 
 #Main program
 
-print("a - for moving left")
-print("d - for moving right")
-print("w - for moving up")
-print("s - for moving down")
-print("e - for moving right diagonal up")
-print("q - for moving left diagonal up")
+print("Press 'a' and 'd' for moving left and right")
+print("Press 'w' and 's' for moving up and down")
+print("Press 'e' and 'q' to move up diagonally, left and right")
 print("Any other letter for quitting")
 
 x_pos = int(input("Input your starting x-position: "))
