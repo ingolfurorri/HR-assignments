@@ -5,17 +5,16 @@ def clean_word(word):
     return word.strip()
 
 def punctation(word):
-    #Currently takes out all punctations
     '''If the word has a punctation at the end, takes it out and saves it'''
     word_alpha = ''
     word_punctation = ''
-    i = 0
-    for char in word:
-        i += 1
-        if(char in string.punctuation and i == len(word)):
-            word_punctation += char
-        else:
-            word_alpha += char
+    
+    if(word[-1] in string.punctuation):
+        word_punctation = word[-1]
+        word_alpha = word[:-1]
+
+    else:
+        word_alpha = word
         
     return word_alpha, word_punctation
 
@@ -30,7 +29,7 @@ def scrambler(word_mid):
 
     return scrambled
 
-def word_scrambler(word):
+def word_scrambled(word):
     '''If the word is long enough, picks it apart and scrambles the middle'''
     if(len(word) < 4):
         return word
@@ -49,10 +48,14 @@ try:
     for word in input_file:
         #Remove unwanted spaces
         word = clean_word(word)
-        #Takes out the punctation
+        #Takes out the punctation, if present
         word_alpha, word_punctation = punctation(word)
-        #Adds the scrambled word, the punctation if present and a space to the final string
-        scrambled_string += word_scrambler(word_alpha) + word_punctation + ' '
+        #Adds the scrambled word and the punctation if present (if not, the word_punctation is empty)
+        if(scrambled_string == ''):
+            scrambled_string += word_scrambled(word_alpha) + word_punctation
+
+        else:    
+            scrambled_string += ' ' + word_scrambled(word_alpha) + word_punctation
 
     print(scrambled_string)
         
