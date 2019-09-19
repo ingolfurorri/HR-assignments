@@ -18,14 +18,14 @@ def punctation(word):
         
     return word_alpha, word_punctation
 
-def scrambler(word_mid):
-    '''Scrambles the middle of the word'''
+def scrambler(word):
+    '''Scrambles the word according to rules'''
     scrambled = ''
-    for i in range(0, len(word_mid), 2):
-        if((i+1) == len(word_mid)):
-            scrambled += word_mid[i]
+    for i in range(0, len(word), 2):
+        if((i+1) == len(word)):
+            scrambled += word[i]
         else:
-            scrambled += word_mid[i+1] + word_mid[i]
+            scrambled += word[i+1] + word[i]
 
     return scrambled
 
