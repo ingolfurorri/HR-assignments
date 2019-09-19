@@ -42,6 +42,7 @@ def word_scrambled(word):
 try:
     file_str = input("Enter name of file: ")
     input_file = open(file_str, "r")
+
     scrambled_string = ''
 
     #Shifts through the file, scrambling the words and adding them to a final string
@@ -58,6 +59,7 @@ try:
             scrambled_string += ' ' + word_scrambled(word_alpha) + word_punctation
 
     print(scrambled_string)
+    
     input_file.close()
         
 #If the file is not found, prints an error and the program stops
