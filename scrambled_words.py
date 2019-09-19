@@ -58,6 +58,7 @@ try:
             scrambled_string += ' ' + word_scrambled(word_alpha) + word_punctation
 
     print(scrambled_string)
+    input_file.close()
         
 #If the file is not found, prints an error and the program stops
 
