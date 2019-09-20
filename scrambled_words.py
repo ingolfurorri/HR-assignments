@@ -1,6 +1,7 @@
 import string
 
 def close_file(input_file):
+    '''Closes the file'''
     input_file.close()
 
 
