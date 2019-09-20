@@ -1,5 +1,9 @@
 import string
 
+def close_file(input_file):
+    input_file.close()
+
+
 def clean_word(word):
     '''Removes the carriage return'''
     return word.strip()
@@ -60,7 +64,7 @@ try:
 
     print(scrambled_string)
     
-    input_file.close()
+    close_file(input_file)
         
 #If the file is not found, prints an error and the program stops
 
