@@ -1,36 +1,40 @@
 import string
 
+def close_file(input_file):
+    '''Closes the file'''
+    input_file.close()
+
+
 def clean_word(word):
     '''Removes the carriage return'''
     return word.strip()
 
 def punctation(word):
-    #Currently takes out all punctations
     '''If the word has a punctation at the end, takes it out and saves it'''
     word_alpha = ''
     word_punctation = ''
-    i = 0
-    for char in word:
-        i += 1
-        if(char in string.punctuation and i == len(word)):
-            word_punctation += char
-        else:
-            word_alpha += char
+    
+    if(word[-1] in string.punctuation):
+        word_punctation = word[-1]
+        word_alpha = word[:-1]
+
+    else:
+        word_alpha = word
         
     return word_alpha, word_punctation
 
-def scrambler(word_mid):
-    '''Scrambles the middle of the word'''
+def scrambler(word):
+    '''Scrambles the word according to rules'''
     scrambled = ''
-    for i in range(0, len(word_mid), 2):
-        if((i+1) == len(word_mid)):
-            scrambled += word_mid[i]
+    for i in range(0, len(word), 2):
+        if((i+1) == len(word)):
+            scrambled += word[i]
         else:
-            scrambled += word_mid[i+1] + word_mid[i]
+            scrambled += word[i+1] + word[i]
 
     return scrambled
 
-def word_scrambler(word):
+def word_scrambled(word):
     '''If the word is long enough, picks it apart and scrambles the middle'''
     if(len(word) < 4):
         return word
@@ -43,18 +47,25 @@ def word_scrambler(word):
 try:
     file_str = input("Enter name of file: ")
     input_file = open(file_str, "r")
+
     scrambled_string = ''
 
     #Shifts through the file, scrambling the words and adding them to a final string
     for word in input_file:
         #Remove unwanted spaces
         word = clean_word(word)
-        #Takes out the punctation
+        #Takes out the punctation, if present
         word_alpha, word_punctation = punctation(word)
-        #Adds the scrambled word, the punctation if present and a space to the final string
-        scrambled_string += word_scrambler(word_alpha) + word_punctation + ' '
+        #Adds the scrambled word and the punctation if present (if not, the word_punctation is empty)
+        if(scrambled_string == ''):
+            scrambled_string += word_scrambled(word_alpha) + word_punctation
+
+        else:    
+            scrambled_string += ' ' + word_scrambled(word_alpha) + word_punctation
 
     print(scrambled_string)
+    
+    close_file(input_file)
         
 #If the file is not found, prints an error and the program stops
 
