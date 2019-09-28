@@ -1,7 +1,10 @@
-According
-to
-research
-at
-harvard
-university,
-hello
+State                       1990        1980        	1970
+Maine                       1227928	    1125043	993722
+New Hampshire               1109252	     920610	737681
+Vermont                      562758	     511456	444732
+Massachusetts               6016425	    5737093	5689170
+Rhode Island                1003464	     947154	949723
+Connecticut                 3287116	    3107564	3032217
+New York                   17990455	   17558165	18241391
+New Jersey                  7730168	    7365011	7171112
+Pennsylvania               11881643    	   11864720     11800766
