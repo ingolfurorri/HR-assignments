@@ -73,6 +73,7 @@ def get_list_years(input_file):
             return list_year[1:]
 
 
+
 def main(input_file):
     '''Main function'''
     list_year = get_list_years(input_file)
