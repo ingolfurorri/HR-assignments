@@ -11,14 +11,10 @@ def min_max(data_list):
 
 
 
-def one_or_two(data_list_temp):
-    '''Check if the state name is one or two words'''
-    #If we can't convert value no. 2 into an int, we know that the state name has two words
-    try:
-        line_int = int(data_list_temp[1])
-        return True
-    except ValueError:
-        return False
+def is_one_word(data_list_temp):
+    '''Check if the state name is one word'''
+    #If the second string is numeric, the state has a one word name and the function returns True
+    return data_list_temp[1].isnumeric()
 
 
 
@@ -30,7 +26,7 @@ def get_data(input_file, index_year):
         data_list_tuple = []
         data_list_temp = line.split()
 
-        if(one_or_two(data_list_temp)):
+        if(is_one_word(data_list_temp)):
             #First we add the year, and then the state name, if it is only on word
             data_list_tuple.append(int(data_list_temp[index_year]))
             data_list_tuple.append(data_list_temp[0])
@@ -65,17 +61,15 @@ def get_user_year(list_year):
 
 def get_list_years(input_file):
     '''Takes the first line in the file and makes a list of the years that the file contains'''
-    list_year = []
-    for index, line in enumerate(input_file):
-        if(index == 0):
-            list_year = line.split()
-            #We only want the years, not the string "State"
-            return list_year[1:]
+    #Read the first line and only the first line
+    list_year = input_file.readline().split()
+    #We only want the years, not the string "State"
+    return list_year[1:]
 
 
 
-def main(input_file):
-    '''Main function'''
+def population(input_file):
+    '''Work through the file'''
     list_year = get_list_years(input_file)
 
     index_year = get_user_year(list_year)
@@ -87,11 +81,15 @@ def main(input_file):
     close_file(input_file)
 
 
-#We ask for a file and try to open, if we can't, we don't enter the main function
-try:
-    input_file_str = input("Enter filename: ")
-    input_file = open(input_file_str, "r")
-    main(input_file)
 
-except FileNotFoundError:
-    print("Filename {} not found!".format(input_file_str))
+def main():
+    #We ask for a file and try to open, if we can't, we don't enter the population function
+    try:
+        input_file_str = input("Enter filename: ")
+        input_file = open(input_file_str, "r")
+        population(input_file)
+
+    except FileNotFoundError:
+        print("Filename {} not found!".format(input_file_str))
+
+main()
