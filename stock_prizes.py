@@ -2,7 +2,7 @@
 DATE = 0
 OPEN = 1
 HIGH = 2
-LOw = 3
+LOW = 3
 CLOSE = 4
 ADJ_CLOSE = 5
 VOLUME = 6
@@ -42,6 +42,7 @@ def count_days(month, data_list):
     '''Counts the days in a given month'''
     count = 0
     for i in range(len(data_list)):
+        #If we can find the substring in the DATE column, we count it
         if(month in data_list[i][DATE]):
             count += 1
     
@@ -52,17 +53,20 @@ def count_days(month, data_list):
 def get_month_average(data_list):
     '''Gets the average for each month in file'''
     month_average_list = []
+    #Index of the lines in the list
     index = 1
     while index != len(data_list):
+        #We create a substring with the year and month
         month = data_list[index][DATE][:-3]
         days = count_days(month, data_list)
         average = 0
         volume = 0
 
+        #Go through the days of the month, and do the appropriate calculations
         for i in range(index, index + days):
             average += float(data_list[i][ADJ_CLOSE])*int(data_list[i][VOLUME])
             volume += float(data_list[i][VOLUME]) 
-        average = average / volume
+        average = (average / volume)
 
         month_average_list.append((month, average))
 
@@ -89,6 +93,7 @@ def get_highest_day(data_list):
 def main():
     input_file = open_file()
 
+    #If the input file is found and opened, we examine its contents
     if(input_file != None):
         data_list = get_data_list(input_file)
         
@@ -96,8 +101,10 @@ def main():
 
         highest_day, highest_value = get_highest_day(data_list)
 
+        #Print the results
+        print("{:<10s} {:>7s}".format("Month", "Price"))
         for i in range(len(month_average_list)):
-            print("{}: {}".format(month_average_list[i][0], month_average_list[i][1]))
+            print("{:<10s} {:>7f}".format(month_average_list[i][0], month_average_list[i][1]))
         
         print("Highest price {} on day {}".format(highest_value, highest_day))
 
