@@ -102,9 +102,9 @@ def main():
         highest_day, highest_value = get_highest_day(data_list)
 
         #Print the results
-        print("{:<10} {:>7}".format("Month", "Price"))
+        print("{:<10}{:>7}".format("Month", "Price"))
         for i in range(len(month_average_list)):
-            print("{:<10} {:>7.2f}".format(month_average_list[i][0], month_average_list[i][1]))
+            print("{:<10}{:>7.2f}".format(month_average_list[i][0], month_average_list[i][1]))
         
         print("Highest price {:.2f} on day {}".format(highest_value, highest_day))
 
