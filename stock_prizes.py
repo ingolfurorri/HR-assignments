@@ -2,7 +2,7 @@
 DATE = 0
 OPEN = 1
 HIGH = 2
-LOw = 3
+LOW = 3
 CLOSE = 4
 ADJ_CLOSE = 5
 VOLUME = 6
