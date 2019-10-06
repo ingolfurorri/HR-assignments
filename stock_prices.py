@@ -16,7 +16,7 @@ def open_file():
         return input_file
 
     except FileNotFoundError:
-        print("File not found!")
+        print("Filename {} not found!".format(input_file_str))
         return None
 
 
@@ -102,11 +102,11 @@ def main():
         highest_day, highest_value = get_highest_day(data_list)
 
         #Print the results
-        print("{:<10s} {:>7s}".format("Month", "Price"))
+        print("{:<10} {:>7}".format("Month", "Price"))
         for i in range(len(month_average_list)):
-            print("{:<10s} {:>7f}".format(month_average_list[i][0], month_average_list[i][1]))
+            print("{:<10} {:>7.2f}".format(month_average_list[i][0], month_average_list[i][1]))
         
-        print("Highest price {} on day {}".format(highest_value, highest_day))
+        print("Highest price {:.2f} on day {}".format(highest_value, highest_day))
 
         close_file(input_file)
 
