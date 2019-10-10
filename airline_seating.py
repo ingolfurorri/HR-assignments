@@ -19,13 +19,13 @@ def get_seat_list():
 def print_seating(seat_list):
     '''Print the seating as it stands'''
     for row in range(len(seat_list)):
-        print("{:2}".format(row+1), end = '   ')
+        print("{:2}".format(row+1), end = ' ')
 
         for seat in range(len(seat_list[row])):
-            print(seat_list[row][seat], end = ' ')
+            print("{}".format(seat_list[row][seat]), end = '')
 
             if(seat == len(seat_list[row])/2-1):
-                print('  ', end='')
+                print("{:3}".format(''), end='')
         print()
 
 
@@ -33,7 +33,7 @@ def print_seating(seat_list):
 def is_taken(user_seat_list, seat_list):
     '''Checks if the seat is taken'''
     user_row = int(user_seat_list[0])
-    #FIX
+    #CREATE A SPECIAL FUNCTION TO CHECK VALIDITY
     while True:
         try:
             user_seat = SEATS.index(user_seat_list[1])
