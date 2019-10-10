@@ -1,4 +1,4 @@
-SEATS = "ABCDEFGHIJKLMNOP"
+SEATS = "ABCDEFGHIJ"
 
 def get_seat_list():
     '''Create the seating list'''
@@ -30,25 +30,32 @@ def print_seating(seat_list):
 
 
 
+def is_valid(user_seat_list, seat_list):
+    return True
+
+
+
 def is_taken(user_seat_list, seat_list):
     '''Checks if the seat is taken'''
     user_row = int(user_seat_list[0])
-    #FIX
-    while True:
-        try:
-            user_seat = SEATS.index(user_seat_list[1])
-            while(user_row > len(seat_list)):
-                print("Invalid seat number!")
-        except:
-            pass
+    user_seat = SEATS.index(user_seat_list[1])
 
-    print(user_row, user_seat)
-
-    if(seat_list[user_row][user_seat]):
+    if(seat_list[user_row-1][user_seat] == 'X'):
         return True
     
     else:
+        print("Not taken")
         return False
+
+
+def update_seating(user_seat_list, seat_list):
+    user_row = int(user_seat_list[0])
+    user_seat = SEATS.index(user_seat_list[1])
+    seat_list[user_row-1][user_seat] = 'X'
+
+            
+
+
 
 
 def get_user_seat(seat_list):
@@ -59,7 +66,7 @@ def get_user_seat(seat_list):
         user_seat_list = input("Input seat number (row seat): ").split()
 
     else:
-        return user_seat_list
+        return update_seating(user_seat_list, seat_list)
 
 
 
@@ -69,7 +76,11 @@ def main():
 
     print_seating(seat_list)
 
-    user_seat = get_user_seat(seat_list)
+    while True:
+
+        user_seat = get_user_seat(seat_list)
+
+        print_seating(seat_list)
 
 main()
 
