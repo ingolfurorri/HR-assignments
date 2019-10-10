@@ -31,7 +31,13 @@ def print_seating(seat_list):
 
 
 def is_valid(user_seat_list, seat_list):
-    return True
+    if(int(user_seat_list[0]) > len(seat_list)):
+        return False
+    #VIRKAR EKKI, LAGA
+    elif(user_seat_list[1] not in seat_list[0]):
+        return False
+    else:
+        return True
 
 
 
@@ -76,11 +82,21 @@ def main():
 
     print_seating(seat_list)
 
-    while True:
+    maximum_seats = len(seat_list[0])*len(seat_list)
+    print(maximum_seats)
+    taken_seats = 0
+
+    more_seats = 'y'
+
+    while taken_seats < maximum_seats+1 and more_seats == 'y':
 
         user_seat = get_user_seat(seat_list)
 
         print_seating(seat_list)
+
+        taken_seats += 1
+
+        more_seats = input("More seats (y/n)? ").lower()
 
 main()
 
