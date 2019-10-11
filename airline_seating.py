@@ -42,7 +42,7 @@ def is_valid(user_seat_list, seat_list):
     if(user_row > len(seat_list)):
         return False
 
-    elif(user_seat_list[1] not in SEATS[:len(seat_list[0]) + 1]):
+    elif(user_seat_list[1] not in SEATS[:len(seat_list[0])]):
         return False
 
     else:
