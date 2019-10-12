@@ -10,6 +10,7 @@ def get_seat_list():
     for row in range(rows):
         temp = []
         for seat in range(seats):
+            #Take a seat identity from the SEATS constant, and create a row
             temp.append(SEATS[seat])
         seat_list.append(temp)
     
@@ -25,6 +26,7 @@ def print_seating(seat_list):
         for seat in range(len(seat_list[row])):
             print("{}".format(seat_list[row][seat]), end = ' ')
 
+            #If we reach the corridor, we print it and then continue with the seats
             if(seat == len(seat_list[row])/2-1):
                 print("{:2}".format(''), end='')
         print()
@@ -33,15 +35,17 @@ def print_seating(seat_list):
 
 def is_valid(user_seat_list, seat_list):
     '''Checks if the seat number is valid'''
+    #Try and change the first value to int, if fails, then the seat is invalid
     try:
         user_row = int(user_seat_list[0])
     except ValueError:
         return False
 
-    #user_seat = SEATS.index(user_seat_list[1]) 
+    #Check if the row number exists
     if(user_row > len(seat_list)):
         return False
 
+    #Check if the seat exists (then it is in the correct substring of the SEATS constant)
     elif(user_seat_list[1] not in SEATS[:len(seat_list[0])]):
         return False
 
@@ -65,6 +69,7 @@ def is_taken(user_seat_list, seat_list):
 
 def update_seating(user_seat_list, seat_list):
     '''Reserves the seat, and updates the seat list'''
+    #Get the values for the row and seat, and reserve the seat there
     user_row = int(user_seat_list[0])
     user_seat = SEATS.index(user_seat_list[1])
     seat_list[user_row-1][user_seat] = 'X'
@@ -108,6 +113,7 @@ def main():
 
         taken_seats += 1
 
+        #If all the seats are taken, it is useless to ask if the user wants more seats
         if taken_seats != maximum_seats:
             more_seats = input("More seats (y/n)? ").lower() == 'y'
 
