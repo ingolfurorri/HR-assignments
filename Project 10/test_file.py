@@ -12,6 +12,5 @@ catalog.add(item3)
 catalog.add(item4)
 #print(catalog)
 
-catalog.clear()
-assert catalog.__str__() == "Catalog Films:"
 assert catalog.__str__() == "Catalog Films:\n\tName: 12 Angry Men, Category: Drama\n\tName: The Godfather, Category: Crime\n\tName: Schindler's List, Category: Biography\n\tName: Pulp Fiction, Category: Crime"
+print('Complete')
